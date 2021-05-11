@@ -7,13 +7,16 @@ export default class FoodDiary extends React.Component {
         super(props);
 
         this.state = {
-            sunday: [],
-            monday: [],
-            tuesday: [],
-            wednesday: [],
-            thursday: [],
-            friday: [],
-            saturday: []
+            choices: [{name: 'apple'}, {name: 'rice'}, {name: 'cheese'}, {name: 'Add new +'}],
+            week: {
+                sunday: [],
+                monday: [],
+                tuesday: [],
+                wednesday: [],
+                thursday: [],
+                friday: [],
+                saturday: [],
+            }
         }
     }
 
@@ -35,7 +38,12 @@ export default class FoodDiary extends React.Component {
                         )}
                     </div>
                 </div>
-                <div className="footer"></div>
+                <span>Choices:</span>
+                <div className="footer">
+                        {this.state.choices.map((food, index) => {
+                            return <div key={index} className="choice">{food.name}</div>
+                        })}
+                </div>
             </div>
         )
     }

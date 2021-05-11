@@ -130,6 +130,8 @@ ul#menu li {
   flex: 1 1 auto;
 }
 
+/* Food Page */
+
 .food .week-container .day:nth-child(odd) .dragdrop-box {
   flex-grow:1;
   height: 300px;
@@ -140,4 +142,19 @@ ul#menu li {
   flex-grow:1;
   height: 300px;
   background-color: lightblue;
+}
+
+.food .footer {
+  display: flex;
+}
+
+.food .footer .choice {
+  max-height: 50px;
+  min-width: 50px;
+  padding: 20px 10px;
+  border-radius: 40px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  margin-right: 30px;
 }
