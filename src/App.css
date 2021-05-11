@@ -59,6 +59,22 @@ ul#menu li a {
   align-content: center;
 }
 
+ul#menu li a {
+  color: initial;
+}
+
+ul#menu li {
+  margin-right: 10px;
+}
+
+#separator {
+  border-bottom: 1px solid lightgray;
+  width: 100vw;
+  margin: 0;
+  margin-top: -16px;
+  margin-bottom: 20px;
+}
+
 #root, .body {
   height: 100%;
 }

@@ -7,9 +7,21 @@ export default class FoodDiary extends React.Component {
         super(props);
 
         this.state = {
-
+            sunday: [],
+            monday: [],
+            tuesday: [],
+            wednesday: [],
+            thursday: [],
+            friday: [],
+            saturday: []
         }
     }
+
+    allowDrop = (e) => {
+        e.preventDefault();
+        console.log(e);
+    }
+
     render() {
         return (
             <div className="view week food">
@@ -18,11 +30,12 @@ export default class FoodDiary extends React.Component {
                         {days.map(day =>
                             <div className="day" key={day}>
                                 <span>{day}</span>
-                                <div className="dragdrop-box"></div>
+                                <div className="dragdrop-box" onDragOver={(event) => this.allowDrop(event)}></div>
                             </div> 
                         )}
                     </div>
                 </div>
+                <div className="footer"></div>
             </div>
         )
     }
