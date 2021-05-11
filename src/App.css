@@ -148,7 +148,7 @@ ul#menu li {
   display: flex;
 }
 
-.food .footer .choice {
+.food .footer .choice, .symptoms .footer .choice  {
   max-height: 50px;
   min-width: 50px;
   padding: 20px 10px;
