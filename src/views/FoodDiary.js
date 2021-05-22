@@ -31,11 +31,11 @@ export default class FoodDiary extends React.Component {
 
     onDrop = (e) => {
         const id = e.dataTransfer.getData('text/plain');
-        const draggableEl = document.getElementById(id);
-        const dropzone = e.target;
-        const clone = draggableEl.cloneNode(true);
-        dropzone.appendChild(clone);
+        const dropzone = e.target.id;
+        const newWeek = {...this.state.week};
+        newWeek[dropzone].push(id);
         e.dataTransfer.clearData();
+        this.setState({week: newWeek});
     }
 
     handleAddNew = (e) => {
@@ -54,6 +54,14 @@ export default class FoodDiary extends React.Component {
         this.setState({value: e.target.value});
     }
 
+    deleteFood = (e, day) => {
+        const id = e.target.id;
+        const week = this.state.week;
+        let newday = this.state.week[day].filter((val) => val !== id); 
+        week[day] = newday;
+        this.setState({week});
+    }
+
     render() {
         return (
             <div className="view week food">
@@ -63,7 +71,11 @@ export default class FoodDiary extends React.Component {
                         {days.map(day =>
                             <div className="day" key={day}>
                                 <span>{day}</span>
-                                <div className="dragdrop-box" onDragOver={(e) => this.onDragOver(e)} onDrop={(e)=> this.onDrop(e)}></div>
+                                <div id={day.toLocaleLowerCase()} className="dragdrop-box" onDragOver={(e) => this.onDragOver(e)} onDrop={(e)=> this.onDrop(e)}>
+                                {this.state.week[day.toLocaleLowerCase()].map((food, index) => {
+                                    return <button key={index} id={food} className="choice" onClick={(e) => this.deleteFood(e, day.toLocaleLowerCase())}>{food} x</button>
+                                })}
+                                </div>
                             </div> 
                         )}
                         <button>&#10095;</button>
