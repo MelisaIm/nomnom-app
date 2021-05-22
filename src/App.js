@@ -12,6 +12,7 @@ import SymptomsLog from './views/SymptomsLog';
 
 function App() {
   return (
+    
     <Router>
       <nav>
         <div>Nom Nom</div>

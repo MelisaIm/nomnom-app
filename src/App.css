@@ -97,6 +97,7 @@ ul#menu li {
 
 .footer {
   justify-content: center;
+  align-items: center;
 }
 
 .text-container {
@@ -128,6 +129,7 @@ ul#menu li {
 .week .day {
   text-align:center;
   flex: 1 1 auto;
+  width: 30%;
 }
 
 /* Food Page */
@@ -138,10 +140,22 @@ ul#menu li {
   background-color: lightblue;
 }
 
+.food .week-container .day:nth-child(even) .dragdrop-box {
+  flex-grow:1;
+  height: 300px;
+  background-color: lightslategray;
+}
+
 .symptoms .day:nth-child(even) .dragdrop-box {
   flex-grow:1;
   height: 300px;
   background-color: lightblue;
+}
+
+.symptoms .day:nth-child(odd) .dragdrop-box {
+  flex-grow:1;
+  height: 300px;
+  background-color: lightslategray;
 }
 
 .food .footer {
