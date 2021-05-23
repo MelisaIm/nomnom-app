@@ -16,7 +16,8 @@ export default class SymptomsLog extends React.Component {
                 thursday: [],
                 friday: [],
                 saturday: [],
-            }
+            },
+            value: ''
         }
     }
 
