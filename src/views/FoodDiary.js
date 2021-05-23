@@ -67,7 +67,7 @@ export default class FoodDiary extends React.Component {
             <div className="view week food">
                 <div className="top-container">
                     <div className="week-container">
-                        <button>&#10094;</button>
+                        {/* <button>&#10094;</button> */}
                         {days.map(day =>
                             <div className="day" key={day}>
                                 <span>{day}</span>
@@ -78,7 +78,7 @@ export default class FoodDiary extends React.Component {
                                 </div>
                             </div> 
                         )}
-                        <button>&#10095;</button>
+                        {/* <button>&#10095;</button> */}
                     </div>
                 </div>
                 <span>Choices:</span>
