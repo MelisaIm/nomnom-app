@@ -34,6 +34,9 @@ export default class FoodDiary extends React.Component {
         const id = e.dataTransfer.getData('text/plain');
         const dropzone = e.target.id;
         const newWeek = {...this.state.week};
+        const found = newWeek[dropzone].find((val) => val === id);
+        
+        if (found) return;
         newWeek[dropzone].push(id);
         e.dataTransfer.clearData();
         this.setState({week: newWeek});
@@ -65,12 +68,10 @@ export default class FoodDiary extends React.Component {
 
     render() {
         const today = getDay(new Date());
-        console.log(today);
         return (
             <div className="view week food">
                 <div className="top-container">
                     <div className="week-container">
-                        {/* <button>&#10094;</button> */}
                         {days.map((day, index) =>
                             <div className="day" key={day}>
                                 <span className={classnames(index === today && 'highlightDay')}>{day}</span>
@@ -81,7 +82,6 @@ export default class FoodDiary extends React.Component {
                                 </div>
                             </div> 
                         )}
-                        {/* <button>&#10095;</button> */}
                     </div>
                 </div>
                 <span>Choices:</span>
