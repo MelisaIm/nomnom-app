@@ -164,6 +164,15 @@ ul#menu li {
   width: 30%;
 }
 
+.week .day > span {
+  color: lightsteelblue;
+}
+
+.week .day .highlightDay {
+  font-weight: bold;
+  color: black
+}
+
 /* Food Page */
 
 .food .week-container .day:nth-child(odd) .dragdrop-box {
