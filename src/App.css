@@ -100,9 +100,14 @@ ul#menu li {
   align-items: center;
 }
 
+.filter-buttons {
+  margin-left: 40px;
+}
+
 .filter-buttons button {
   border: 1px black solid;
   margin-right: 30px;
+  margin-bottom: 10px;
   padding: 20px;
   border-radius: 30px;
   background-color: lightseagreen;
@@ -119,6 +124,18 @@ ul#menu li {
   font-size: 16px;
   margin: 20px;
   /* background-color: lightblue; */
+}
+
+.image-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 90vw;
+  margin-bottom: 10px;
+}
+
+.image-container * {
+  height: 150px;
+  border-radius: 30px;
 }
 
 .chart-container {
