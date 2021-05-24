@@ -1,5 +1,6 @@
 import React from 'react';
-
+import {getDay} from 'date-fns';
+import classnames from 'classnames';
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 export default class SymptomsLog extends React.Component {
@@ -33,6 +34,9 @@ export default class SymptomsLog extends React.Component {
         const id = e.dataTransfer.getData('text/plain');
         const dropzone = e.target.id;
         const newWeek = {...this.state.week};
+        const found = newWeek[dropzone].find((val) => val === id);
+        
+        if (found) return;
         newWeek[dropzone].push(id);
         e.dataTransfer.clearData();
         this.setState({week: newWeek});
@@ -63,13 +67,14 @@ export default class SymptomsLog extends React.Component {
     }
 
     render() {
+        const today = getDay(new Date());
         return (
             <div className="view week symptoms">
                 <div className="top-container">
                     <div className="week-container">
-                        {days.map(day =>
+                        {days.map((day, index) =>
                             <div className="day" key={day}>
-                                <span>{day}</span>
+                                <span className={classnames(index === today && 'highlightDay')}>{day}</span>
                                 <div id={day.toLocaleLowerCase()} className="dragdrop-box" onDragOver={(e) => this.onDragOver(e)} onDrop={(e)=> this.onDrop(e)}>
                                 {this.state.week[day.toLocaleLowerCase()].map((symptom, index) => {
                                     return <button key={index} id={symptom} className="choice" onClick={(e) => this.deleteSymptom(e, day.toLocaleLowerCase())}>{symptom} x</button>
