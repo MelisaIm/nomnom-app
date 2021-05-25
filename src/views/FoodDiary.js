@@ -1,6 +1,8 @@
 import React from 'react';
 import {getDay} from 'date-fns';
 import classnames from 'classnames';
+import base from '../airtable';
+
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 export default class FoodDiary extends React.Component {
@@ -65,6 +67,15 @@ export default class FoodDiary extends React.Component {
         week[day] = newday;
         this.setState({week});
     }
+
+    // async componentDidMount() {
+    //     const data = await base("foodLog").find('melisa', (err, res) => {
+    //         if (err) console.error(err); return;
+    //         console.log(res);
+    //     })
+    //     console.log(data);
+    //     // console.log(JSON.stringify(this.state.week));
+    // }
 
     render() {
         const today = getDay(new Date());
