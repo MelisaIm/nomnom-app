@@ -66,6 +66,15 @@ export default class SymptomsLog extends React.Component {
         this.setState({week});
     }
 
+    componentWillMount() {
+        const data = JSON.parse(window.localStorage.getItem('symptomsDiary'));
+        data && this.setState({...data})
+    }
+
+    componentWillUnmount() {
+        window.localStorage.setItem('symptomsDiary', JSON.stringify(this.state));
+    }
+
     render() {
         const today = getDay(new Date());
         const day = new Date();
