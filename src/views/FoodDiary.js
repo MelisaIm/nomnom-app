@@ -1,5 +1,5 @@
 import React from 'react';
-import {getDay} from 'date-fns';
+import {getDay, format, startOfWeek, eachDayOfInterval, addDays} from 'date-fns';
 import classnames from 'classnames';
 import base from '../airtable';
 
@@ -79,6 +79,11 @@ export default class FoodDiary extends React.Component {
 
     render() {
         const today = getDay(new Date());
+        const day = new Date();
+        const fullWeek = addDays(day, 5);
+        const weekStart = startOfWeek(new Date(), {weekStartsOn: 0});
+        const thisWeek = eachDayOfInterval({start: weekStart, end: fullWeek})
+        console.log(thisWeek);
         return (
             <div className="view week food">
                 <div className="top-container">
@@ -86,6 +91,7 @@ export default class FoodDiary extends React.Component {
                         {days.map((day, index) =>
                             <div className="day" key={day}>
                                 <span className={classnames(index === today && 'highlightDay')}>{day}</span>
+                                <div>{format(thisWeek[index], 'P')}</div>
                                 <div id={day.toLocaleLowerCase()} className="dragdrop-box" onDragOver={(e) => this.onDragOver(e)} onDrop={(e)=> this.onDrop(e)}>
                                 {this.state.week[day.toLocaleLowerCase()].map((food, index) => {
                                     return <button key={index} id={food} className="choice" onClick={(e) => this.deleteFood(e, day.toLocaleLowerCase())}>{food} x</button>
