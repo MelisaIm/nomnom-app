@@ -1,5 +1,5 @@
 import React from 'react';
-import {getDay} from 'date-fns';
+import {getDay, format, startOfWeek, eachDayOfInterval, addDays} from 'date-fns';
 import classnames from 'classnames';
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -68,6 +68,10 @@ export default class SymptomsLog extends React.Component {
 
     render() {
         const today = getDay(new Date());
+        const day = new Date();
+        const fullWeek = addDays(day, 5);
+        const weekStart = startOfWeek(new Date(), {weekStartsOn: 0});
+        const thisWeek = eachDayOfInterval({start: weekStart, end: fullWeek})
         return (
             <div className="view week symptoms">
                 <div className="top-container">
@@ -75,6 +79,7 @@ export default class SymptomsLog extends React.Component {
                         {days.map((day, index) =>
                             <div className="day" key={day}>
                                 <span className={classnames(index === today && 'highlightDay')}>{day}</span>
+                                <div>{format(thisWeek[index], 'P')}</div>
                                 <div id={day.toLocaleLowerCase()} className="dragdrop-box" onDragOver={(e) => this.onDragOver(e)} onDrop={(e)=> this.onDrop(e)}>
                                 {this.state.week[day.toLocaleLowerCase()].map((symptom, index) => {
                                     return <button key={index} id={symptom} className="choice" onClick={(e) => this.deleteSymptom(e, day.toLocaleLowerCase())}>{symptom} x</button>

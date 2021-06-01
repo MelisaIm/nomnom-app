@@ -83,7 +83,6 @@ export default class FoodDiary extends React.Component {
         const fullWeek = addDays(day, 5);
         const weekStart = startOfWeek(new Date(), {weekStartsOn: 0});
         const thisWeek = eachDayOfInterval({start: weekStart, end: fullWeek})
-        console.log(thisWeek);
         return (
             <div className="view week food">
                 <div className="top-container">
