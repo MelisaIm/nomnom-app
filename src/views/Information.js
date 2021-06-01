@@ -18,7 +18,7 @@ export default class Information extends React.Component {
         }
     }
 
-    async componentWillMount() {
+    async componentDidMount() {
         let fetched = true; 
         const state = JSON.parse(window.localStorage.getItem('articles'));
         if (!state || !state["elimination diet"].summary || !state["keto diet"].summary || !state["food allergy"].summary 

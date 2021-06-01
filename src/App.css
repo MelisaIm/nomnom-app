@@ -118,6 +118,10 @@ ul#menu li {
   background-color: lightpink;
 }
 
+.left-side .text-container {
+  height: 50%;
+}
+
 .text-container {
   width: 80%;
   height: 80%;

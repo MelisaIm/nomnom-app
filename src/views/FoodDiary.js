@@ -68,7 +68,7 @@ export default class FoodDiary extends React.Component {
         this.setState({week});
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const data = JSON.parse(window.localStorage.getItem('foodDiary'));
         data && this.setState({...data})
     }
