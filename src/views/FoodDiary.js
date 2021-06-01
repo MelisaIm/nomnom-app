@@ -68,14 +68,14 @@ export default class FoodDiary extends React.Component {
         this.setState({week});
     }
 
-    // async componentDidMount() {
-    //     const data = await base("foodLog").find('melisa', (err, res) => {
-    //         if (err) console.error(err); return;
-    //         console.log(res);
-    //     })
-    //     console.log(data);
-    //     // console.log(JSON.stringify(this.state.week));
-    // }
+    componentWillMount() {
+        const data = JSON.parse(window.localStorage.getItem('foodDiary'));
+        data && this.setState({...data})
+    }
+
+    componentWillUnmount() {
+        window.localStorage.setItem('foodDiary', JSON.stringify(this.state));
+    }
 
     render() {
         const today = getDay(new Date());
