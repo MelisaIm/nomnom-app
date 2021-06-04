@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -25,6 +26,16 @@ export default class Home extends React.Component {
             }
         }
         this.setState({foods: foodList, symptoms: symptomsList});
+        this.generateData(foodList);
+    }
+
+    async generateData(foodList) {
+        foodList.forEach(async(food) => {
+            if (window.localStorage.getItem(`${food}`) === null ) {
+                const result = await axios.get(`https://pure-journey-77953.herokuapp.com/food/${food}`);
+                window.localStorage.setItem(`${food}`, JSON.stringify(result));
+            }
+        });
     }
 
     render() {
@@ -34,12 +45,12 @@ export default class Home extends React.Component {
             <div className="view home">
                 <div className="top-container">
                     <div className="left-side">Overview of food this week:
-                        <div className="text-container">{food.map((food) => <div>{food}</div>)}</div>
+                        <div className="text-container">{food.map((food, index) => <div key={index}>{food}</div>)}</div>
                     <div>Overview of symptoms this week:
-                        <div className="text-container">{symptoms.map((symptom) => <div>{symptom}</div>)}</div>
+                        <div className="text-container">{symptoms.map((symptom, index) => <div key={index}>{symptom}</div>)}</div>
                     </div>
                     </div>
-                    
+
                 </div>
                 <div className="footer">More info</div>
             </div>
