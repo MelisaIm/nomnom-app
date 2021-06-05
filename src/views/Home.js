@@ -15,7 +15,11 @@ export default class Home extends React.Component {
         const foodList = [];
         if (foods.week) {
             for (const day in foods.week) {
-                foodList.push(...foods.week[day]);
+                foods.week[day].forEach((food) => {
+                    if (foodList.indexOf(food) === -1) {
+                        foodList.push(food);
+                    }
+                });
             }
         }
         this.setState({foods: foodList});
