@@ -77,6 +77,11 @@ export default class FoodDiary extends React.Component {
         window.localStorage.setItem('foodDiary', JSON.stringify(this.state));
     }
 
+    removeChoice(choice) {
+        const choices = this.state.choices.filter((val) => val !== choice);
+        this.setState({choices});
+    }
+
     render() {
         const today = getDay(new Date());
         const day = new Date();
@@ -90,7 +95,7 @@ export default class FoodDiary extends React.Component {
                         {days.map((day, index) =>
                             <div className="day" key={day}>
                                 <span className={classnames(index === today && 'highlightDay')}>{day}</span>
-                                <div>{format(thisWeek[index], 'P')}</div>
+                                <div>{format(thisWeek[index], 'MM/dd')}</div>
                                 <div id={day.toLocaleLowerCase()} className="dragdrop-box" onDragOver={(e) => this.onDragOver(e)} onDrop={(e)=> this.onDrop(e)}>
                                 {this.state.week[day.toLocaleLowerCase()].map((food, index) => {
                                     return <button key={index} id={food} className="choice" onClick={(e) => this.deleteFood(e, day.toLocaleLowerCase())}>{food} x</button>
@@ -103,7 +108,7 @@ export default class FoodDiary extends React.Component {
                 <span>Choices:</span>
                 <div className="footer">
                         {this.state.choices.map((food, index) => {
-                            return <div draggable key={index} id={food} className="choice" onDragStart={(e) => this.onDragStart(e)}>{food}</div>
+                            return <div draggable key={index} id={food} className="choice" onDragStart={(e) => this.onDragStart(e)}>{food}<button className="close" onClick={() => this.removeChoice(food)}>x</button></div>
                         })}
                         <form className="addNewForm" onSubmit={(e) => this.handleAddNew(e)}>
                             <label>Food: </label>

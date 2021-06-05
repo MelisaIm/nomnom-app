@@ -88,7 +88,7 @@ export default class SymptomsLog extends React.Component {
                         {days.map((day, index) =>
                             <div className="day" key={day}>
                                 <span className={classnames(index === today && 'highlightDay')}>{day}</span>
-                                <div>{format(thisWeek[index], 'P')}</div>
+                                <div>{format(thisWeek[index], 'MM/dd')}</div>
                                 <div id={day.toLocaleLowerCase()} className="dragdrop-box" onDragOver={(e) => this.onDragOver(e)} onDrop={(e)=> this.onDrop(e)}>
                                 {this.state.week[day.toLocaleLowerCase()].map((symptom, index) => {
                                     return <button key={index} id={symptom} className="choice" onClick={(e) => this.deleteSymptom(e, day.toLocaleLowerCase())}>{symptom} x</button>

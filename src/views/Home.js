@@ -45,9 +45,9 @@ export default class Home extends React.Component {
             <div className="view home">
                 <div className="top-container">
                     <div className="left-side">Overview of food this week:
-                        <div className="text-container">{food.map((food, index) => <div key={index}>{food}</div>)}</div>
+                        <div className="text-container">{food.map((food, index) => <button key={index}>{food}</button>)}</div>
                     <div>Overview of symptoms this week:
-                        <div className="text-container">{symptoms.map((symptom, index) => <div key={index}>{symptom}</div>)}</div>
+                        <div className="text-container">{symptoms.map((symptom, index) => <button key={index}>{symptom}</button>)}</div>
                     </div>
                     </div>
 
