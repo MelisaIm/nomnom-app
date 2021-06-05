@@ -34,8 +34,9 @@ export default class SymptomsLog extends React.Component {
         const id = e.dataTransfer.getData('text/plain');
         const dropzone = e.target.id;
         const newWeek = {...this.state.week};
+        const validDropzone = days.find((day) => day.toLowerCase() === dropzone);
+        if (!validDropzone) return;
         const found = newWeek[dropzone].find((val) => val === id);
-        
         if (found) return;
         newWeek[dropzone].push(id);
         e.dataTransfer.clearData();
@@ -75,6 +76,11 @@ export default class SymptomsLog extends React.Component {
         window.localStorage.setItem('symptomsDiary', JSON.stringify(this.state));
     }
 
+    removeChoice(choice) {
+        const choices = this.state.choices.filter((val) => val !== choice);
+        this.setState({choices});
+    }
+
     render() {
         const today = getDay(new Date());
         const day = new Date();
@@ -101,7 +107,7 @@ export default class SymptomsLog extends React.Component {
                 <span>Choices:</span>
                 <div className="footer">
                     {this.state.choices.map((symptom, index) => {
-                            return <div draggable key={index} id={symptom} className="choice" onDragStart={(e) => this.onDragStart(e)}>{symptom}</div>
+                            return <div draggable key={index} id={symptom} className="choice" onDragStart={(e) => this.onDragStart(e)}>{symptom}<button className="close" onClick={() => this.removeChoice(symptom)}>x</button></div>
                         })}
                         <form className="addNewForm" onSubmit={(e) => this.handleAddNew(e)}>
                             <label>Symptom: </label>

@@ -36,8 +36,9 @@ export default class FoodDiary extends React.Component {
         const id = e.dataTransfer.getData('text/plain');
         const dropzone = e.target.id;
         const newWeek = {...this.state.week};
+        const validDropzone = days.find((day) => day.toLowerCase() === dropzone);
+        if (!validDropzone) return;
         const found = newWeek[dropzone].find((val) => val === id);
-        
         if (found) return;
         newWeek[dropzone].push(id);
         e.dataTransfer.clearData();

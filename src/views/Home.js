@@ -6,7 +6,7 @@ export default class Home extends React.Component {
         super(props);
         this.state = {
             foods: [],
-            symptoms: []
+            selected: ''
         }
     }
     
@@ -18,14 +18,7 @@ export default class Home extends React.Component {
                 foodList.push(...foods.week[day]);
             }
         }
-        const symptoms = JSON.parse(window.localStorage.getItem('symptomsDiary')) || {};
-        const symptomsList = [];
-        if (symptoms.week) {
-            for (const day in symptoms.week) {
-                symptomsList.push(...symptoms.week[day]);
-            }
-        }
-        this.setState({foods: foodList, symptoms: symptomsList});
+        this.setState({foods: foodList});
         this.generateData(foodList);
     }
 
@@ -38,21 +31,45 @@ export default class Home extends React.Component {
         });
     }
 
+    capitalizeFirstLetter(word) {
+        return word.replace(/^./, word[0].toUpperCase());
+    }
+
+    displayFoodData() {
+        const food = this.state.selected;
+        if (food) {
+            const storedData = window.localStorage.getItem(`${food}`); 
+            if (storedData !== null) {
+                const parsedData = JSON.parse(storedData).data || {};
+                const image = parsedData.image;
+                const name = parsedData.name;
+                const {percentProtein, percentFat, percentCarbs} = parsedData.nutrition.caloricBreakdown || {}
+                const { amount, unit} = parsedData.nutrition.weightPerServing || {};
+                return <div className={"foodNutrition"}>
+                        <div>{this.capitalizeFirstLetter(name)}</div>
+                        <img src={`https://spoonacular.com/cdn/ingredients_100x100/${image}`}></img>
+                        <div>Percent of carbs: {percentCarbs}</div>
+                        <div>Percent of protein: {percentProtein}</div>
+                        <div>Percent of fat: {percentFat}</div>
+                        <div>Serving size: {amount}{unit}</div>
+                    </div>
+            } else {
+                this.generateData();
+            }
+        }
+    }
+
     render() {
         const food = this.state.foods;
-        const symptoms = this.state.symptoms;
         return (
             <div className="view home">
                 <div className="top-container">
-                    <div className="left-side">Overview of food this week:
-                        <div className="text-container">{food.map((food, index) => <button key={index}>{food}</button>)}</div>
-                    <div>Overview of symptoms this week:
-                        <div className="text-container">{symptoms.map((symptom, index) => <button key={index}>{symptom}</button>)}</div>
+                    <span>Data of food consumed this week</span>
+                        <div className="text-container">{food.map((food, index) => <button key={index} onClick={() => this.setState({selected: food})}>{food}</button>)}</div>
+                    <div className ="footer">{this.state.selected ? null : <span>Click for nutritional info</span>}
+                        {this.displayFoodData()}
                     </div>
-                    </div>
-
                 </div>
-                <div className="footer">More info</div>
             </div>
         )
     }

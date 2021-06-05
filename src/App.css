@@ -40,7 +40,11 @@
 nav > div {
   margin-left: 10px;
   margin-top: 10px;
-  margin-bottom: -25px;
+  margin-bottom: -40px;
+  transform: translateY(15px);
+  font-size: 35px;
+  font-weight: 900;
+  width: 200px;
 }
 
 #menu {
@@ -85,8 +89,6 @@ ul#menu li {
 }
 
 .home, .top-container, .footer {
-  display: flex;
-  height: 100%;
   width: 100%;
 }
 
@@ -115,9 +117,9 @@ button:not(.close) {
   height: 500px;
 }
 
-.footer {
-  justify-content: center;
-  align-items: center;
+.home .footer {
+  margin: auto;
+  width: 85%;
 }
 
 .filter-buttons {
@@ -130,6 +132,7 @@ button:not(.close) {
   margin-bottom: 10px;
   padding: 20px;
   border-radius: 30px;
+  font-size: 16px;
   background-color: lightseagreen;
   color: white;
 }
@@ -138,16 +141,11 @@ button:not(.close) {
   background-color: lightpink;
 }
 
-.left-side .text-container {
-  height: 50%;
-}
-
 .text-container {
   width: 80%;
   height: 80%;
   font-size: 16px;
   margin: 20px;
-  /* background-color: lightblue; */
 }
 
 .image-container {
@@ -223,9 +221,11 @@ button:not(.close) {
   background-color: lightslategray;
 }
 
-.food .footer {
+.footer {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .food .footer .choice, .symptoms .footer .choice  {
