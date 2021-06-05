@@ -54,7 +54,7 @@ export default class Home extends React.Component {
                         <div>Serving size: {amount}{unit}</div>
                     </div>
             } else {
-                this.generateData();
+                this.generateData([this.state.selected]);
             }
         }
     }
