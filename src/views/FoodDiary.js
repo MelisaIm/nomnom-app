@@ -1,7 +1,6 @@
 import React from 'react';
 import {getDay, format, startOfWeek, eachDayOfInterval, addDays} from 'date-fns';
 import classnames from 'classnames';
-import base from '../airtable';
 
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
