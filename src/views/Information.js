@@ -60,12 +60,23 @@ export default class Information extends React.Component {
             <div className="view home">
                 <div className="top-container">
                     <div className="left-side">
-                    <div className="filter-buttons"><button onClick={() => this.handleClick("nom")}>Nom Nom</button>{topics.map((topic, index) => <button onClick={() => !this.state[topic].fetching && this.handleClick(topic)}key={index}>{this.state[topic].fetching ? <><i className="fa fa-spinner fa-spin"></i> Loading</> :topic}</button>)}</div>
-                        <div className="text-container">
+                    <div className="filter-buttons">
+                        <button onClick={() => this.handleClick("nom")}>Nom Nom</button>
+                        {topics.map((topic, index) => <button 
+                                                        onClick={() => !this.state[topic].fetching && this.handleClick(topic)}key={index}>
+                                                        {this.state[topic].fetching ? <><i className="fa fa-spinner fa-spin"></i> Loading</> :topic}
+                                                    </button>)}
+                    </div>
+                    <div className="text-container">
                         <h4>{this.state[this.state.selected].title}</h4>
-                        <div className="image-container">{!this.state[this.state.selected].fetching && this.state[this.state.selected].images && this.state[this.state.selected].images.map((image, index) => index < 2 && <img key={index} src={image}></img>)}</div>
-                        {this.state[this.state.selected].summary}
+                        <div className="image-container">
+                            {!this.state[this.state.selected].fetching && 
+                            this.state[this.state.selected].images && 
+                            this.state[this.state.selected].images.map((image, index) => index < 2 && 
+                            <img alt="" key={index} src={image}></img>)}
                         </div>
+                        {this.state[this.state.selected].summary}
+                    </div>
                     </div>
                 </div>
             </div>
