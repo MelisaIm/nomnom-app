@@ -51,7 +51,7 @@ export default class Home extends React.Component {
                 const { amount, unit} = parsedData.nutrition.weightPerServing || {};
                 return <div className={"foodNutrition"}>
                         <div>{this.capitalizeFirstLetter(name)}</div>
-                        <img src={`https://spoonacular.com/cdn/ingredients_100x100/${image}`}></img>
+                        <img alt="" src={`https://spoonacular.com/cdn/ingredients_100x100/${image}`}></img>
                         <div>Percent of carbs: {percentCarbs}</div>
                         <div>Percent of protein: {percentProtein}</div>
                         <div>Percent of fat: {percentFat}</div>
